@@ -1,6 +1,6 @@
 package pet_data;
 
-public class Pet {
+public abstract class Pet implements Comparable<Pet>{
     private String name;
     private String type;
      public void setName(String name) {
@@ -24,27 +24,29 @@ public class Pet {
          this.type = type;
      }
 
+
+     public Pet(){}
+
     public void speak() {
         System.out.println("This pet can make a sound!");
     }
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return "Pet name: " + name + '\'' +
+                ", Pet type: " + type + '\'';
     }
 
     public static void printPetInfo(Pet pet) {
         System.out.println(pet);
     }
 
-//    public void printPetNamesAndSounds(Pet[] pets) {
-//         for(Pet[] pet : pets)
-//         { System.out.println();}
-//
-//
-//    }
 
+    @Override
+    public int compareTo(Pet pet) {
+         if(this.getName().equalsIgnoreCase(pet.getName())){
+           return this.getClass().getSimpleName().compareTo(pet.getClass().getSimpleName());
+         }else
+            return this.getName().compareTo(pet.getName());
+    }
 }
